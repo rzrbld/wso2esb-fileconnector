@@ -61,11 +61,11 @@ STEPS:
 3. Please do these changes on fileconnector.xml (fileconenctor.xml file can be found from <fileconnetor>/src/test/resources/artifacts/ESB/config/proxies/fileconnector/).
     1) Change the file locations with the accessible file locations.
 
-    2) Copy an 'mp4' or a large file at the location specified in <fileconnector.copylarge></fileconnector.copylarge> for copylarge method.
+    2) Copy an 'mp4' or a large file at the location specified in &lt;fileconnector.copylarge&gt;&lt;/fileconnector.copylarge&gt; for copylarge method.
 
-    3) Create a file at the location specified in <fileconnector.copy></fileconnector.copy> for copy method.
+    3) Create a file at the location specified in &lt;fileconnector.copy&gt;&lt;/fileconnector.copy&gt; for copy method.
 
-    3) Create at least one folder and a file at the location specified in  <filelocation></filelocation> archive method.
+    3) Create at least one folder and a file at the location specified in  &lt;filelocation&gt;&lt;/filelocation&gt; archive method.
 
 4. Make sure that fileconnector is specified as a module in ESB_Connector_Parent pom.
     ```xml
