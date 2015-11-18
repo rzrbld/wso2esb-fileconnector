@@ -28,7 +28,7 @@ instead of encoded base64:
 $ cat myHelloWord.txt
 SGVsbG8gd29ybGQhISE=
 ```
-with this file connector, this is quite simple, only thing that you need to set is encoding property in <fileconnector.create> to base64, default values like US-ASCII, UTF-8, UTF-16 is still supporting:
+with this file connector, this is quite simple, only thing that you need to set is encoding property in &lt;fileconnector.create&gt; section to base64, default values like US-ASCII, UTF-8, UTF-16 is still supporting:
 ```xml
 ...
 <property name="encoding" value="base64"></property>
