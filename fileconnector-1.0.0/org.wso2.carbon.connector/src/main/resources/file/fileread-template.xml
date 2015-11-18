@@ -1,0 +1,15 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="read">
+    <parameter name="filelocation"/>
+    <parameter name="contenttype"/>
+    <parameter name="streaming"/>
+    <parameter name="filepattern"/>
+    <sequence>
+        <log level="full" category="debug">
+            <property name="filelocation" expression="$func:filelocation" />
+            <property name="contenttype" expression="$func:contenttype" />
+            <property name="streaming" expression="$func:streaming" />
+            <property name="filepattern" expression="$func:filepattern" />
+        </log>
+        <class name="org.wso2.carbon.connector.FileRead" />
+    </sequence>
+</template>
