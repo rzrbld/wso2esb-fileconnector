@@ -71,7 +71,11 @@ it can be easy obtained by expression $ctx:FILE_NAME_CTX or get-property('FILE_N
   <property name="filename" expression="$ctx:FILE_NAME_CTX"/>
 </log>
 ```
-
+meanwhile in logs
+```sh
+[2015-12-15 23:36:54,117]  INFO - LogMediator To: /services/readFileWithName, MessageID: urn:uuid:0c9d0d78-1177-45a0-9033-6e2c3f7d4198, Direction: request, filename = file:///Z:/test_files/test.xml, Envelope: 
+...
+```
 
 
 
