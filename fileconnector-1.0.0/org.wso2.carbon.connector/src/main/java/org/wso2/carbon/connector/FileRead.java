@@ -32,7 +32,11 @@ import org.wso2.carbon.connector.util.FTPSiteUtils;
 import org.wso2.carbon.connector.util.FileConstants;
 import org.wso2.carbon.connector.util.ResultPayloadCreater;
 
+
+
 public class FileRead extends AbstractConnector implements Connector {
+
+    private static final String FILE_NAME_CTX = "FILE_NAME_CTX";
 
     public void connect(MessageContext messageContext) throws ConnectException {
         String fileLocation = (String) ConnectorUtils.lookupTemplateParamater(messageContext,
@@ -42,6 +46,7 @@ public class FileRead extends AbstractConnector implements Connector {
         String streaming = (String) ConnectorUtils.lookupTemplateParamater(messageContext, FileConstants.STREAMING);
         String filePattern = (String) ConnectorUtils.lookupTemplateParamater(messageContext,
                 FileConstants.FILE_PATTERN);
+
 
         if (log.isDebugEnabled()) {
             log.info("File read start with" + fileLocation);
@@ -84,6 +89,11 @@ public class FileRead extends AbstractConnector implements Connector {
                 log.warn("File/Folder does not exists");
                 handleException("File/Folder does not exists", messageContext);
             }
+            
+            String fileNameCtx = fileObj.getName().toString();
+
+            messageContext.setProperty(FILE_NAME_CTX, fileNameCtx);
+
             ResultPayloadCreater.buildFile(fileObj, messageContext, contentType, streaming);
         } catch (Exception e) {
             handleException(e.getMessage(), messageContext);

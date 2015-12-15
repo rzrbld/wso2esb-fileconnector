@@ -3,6 +3,10 @@
 Based on original fileconnector-1.0.0: https://github.com/wso2/esb-connectors/tree/master/fileconnector
 
 #### Difference between original and this version:
+ - decode base64 strings before saving file
+ - get file name while reading directory
+
+#### Decode base64 on save:
 this file connector allow's you to decode base64 strings before saving file.
 For example:
 you got binary\text or whatever file and you send this file, with or without MTOM or SwA, on WSO2ESB. In ESB logs you will see something like:
@@ -28,7 +32,7 @@ instead of encoded base64:
 $ cat myHelloWord.txt
 SGVsbG8gd29ybGQhISE=
 ```
-with this file connector, this is quite simple, only thing that you need to set is encoding property in &lt;fileconnector.create&gt; section to base64, default values like US-ASCII, UTF-8, UTF-16 is still supporting:
+with this file connector, this is quite simple, only thing that you need to set encoding property in &lt;fileconnector.create&gt; section to base64, default values like US-ASCII, UTF-8, UTF-16 is still supporting:
 ```xml
 ...
 <property name="encoding" value="base64"></property>
@@ -40,6 +44,34 @@ with this file connector, this is quite simple, only thing that you need to set 
     <encoding>{$ctx:encoding}</encoding>
  </fileconnector.create>
 ```
+
+#### Get file name on fileconnector.read
+Let's say you got bunch of files in one directory and you need read them:
+```sh
+test_files
+├── test.xml
+├── test9.xml
+├── testOne.xml
+└── testTwo.xml
+```
+
+in proxy sequence you have this:
+```xml
+...
+<fileconnector.read>
+    <filelocation>file:///Z:/test_files/</filelocation>
+    <contenttype>application/xml</contenttype>
+</fileconnector.read>
+...
+```
+after reading, file name will be stored in property FILE_NAME_CTX.
+it can be easy obtained by expression $ctx:FILE_NAME_CTX or get-property('FILE_NAME_CTX'). For example:
+```xml
+<log level="full">
+  <property name="filename" expression="$ctx:FILE_NAME_CTX"/>
+</log>
+```
+
 
 
 
